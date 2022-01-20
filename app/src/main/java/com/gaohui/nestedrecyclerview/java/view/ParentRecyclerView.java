@@ -114,6 +114,9 @@ public class ParentRecyclerView extends RecyclerView {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         if(ev != null && ev.getAction() == MotionEvent.ACTION_DOWN) {
+            if (isChildRecyclerViewCanScrollUp()) {
+                canScrollVertically.set(false);
+            }
             //ACTION_DOWN的时候重置加速度
             velocityY = 0;
             stopScroll();
